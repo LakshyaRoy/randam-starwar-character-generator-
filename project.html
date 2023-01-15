@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: papayawhip;
+      }
+
+      button {
+        width: 200px;
+        color: white;
+        background-color: black;
+        padding: 10px;
+      }
+      .btn,
+      .img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+      }
+      h2 {
+        font-size: 44px;
+        text-align: center;
+      }
+      img {
+        width: 200px;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="btn">
+      <button>random character generator</button>
+    </div>
+    <h2></h2>
+    <div class="img">
+      <img src="" class="character-img" alt="character" />
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(document).on("click", "button", function () {
+          //   console.log("clicked");
+          const random = Math.ceil(Math.random() * 88);
+          //   console.log(
+          //     `https://akabab.github.io/starwars-api/api/id/${random}.json`
+          //   );
+          $.get(
+            ` https://akabab.github.io/starwars-api/api/id/${random}.json`,
+            function (data) {
+              $("h2").text(data["name"]);
+              $(".character-img").attr("src", data["image"]);
+            }
+          );
+        });
+      });
+    </script>
+  </body>
+</html>
